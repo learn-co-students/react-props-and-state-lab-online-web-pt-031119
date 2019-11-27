@@ -40,17 +40,25 @@ class App extends React.Component {
   }
 
   onAdoptPet = (id) => {
-    const pets = [...this.state.pets]
+    this.setState(previousState => {
+      return {
+        pets: this.updatePets(previousState, id)
+      }
+    })
+
+    //this.updatePets(pets)
+  }
+
+  updatePets = (previousState, id) => {
+    // this.setState({
+    //   pets: pets
+    // })
+
+    const pets = [...previousState.pets]
     const pet = pets.find(pet => pet.id === id)
     const index = pets.indexOf(pet)
     pets[index].isAdopted = !pets[index].isAdopted
-    this.updatePets(pets)
-  }
-
-  updatePets = (pets) => {
-    this.setState({
-      pets: pets
-    })
+    return pets
   }
 
   render() {
