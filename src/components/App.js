@@ -45,15 +45,9 @@ class App extends React.Component {
         pets: this.updatePets(previousState, id)
       }
     })
-
-    //this.updatePets(pets)
   }
 
   updatePets = (previousState, id) => {
-    // this.setState({
-    //   pets: pets
-    // })
-
     const pets = [...previousState.pets]
     const pet = pets.find(pet => pet.id === id)
     const index = pets.indexOf(pet)
