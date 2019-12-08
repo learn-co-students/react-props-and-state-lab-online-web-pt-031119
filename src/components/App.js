@@ -9,7 +9,6 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
-      data: null,
       filters: {
         type: 'all'
       }
@@ -17,29 +16,33 @@ class App extends React.Component {
   }
 
  updateFilters = (pet) => {
-   this.setState({
+  this.setState({
      filters: {
-       type: pet
+       type: pet.target.value
      }
    })
-   console.log(this.state.filters.type)
  }
 
 findPetsClick = (pet) => {
-  fetch(`/api/pets?type=${this.state.filters.type}`)
-  .then(response => response.json())
-  .then(data => this.setState({data}))
+  if (this.state.filters.type == "all") {
+    fetch(`/api/pets`)
+    .then(response => response.json())
+    .then(data => this.setState({pets: data}))
+  } else {
+    fetch(`/api/pets?type=${this.state.filters.type}`)
+    .then(response => response.json())
+    .then(data => this.setState({pets: data}))
+  } 
+ 
 }
 
-componentDidMount() {
-  fetch('/api/pets')
-  .then(response => response.json())
-  .then(data => this.setState({data}))
-} 
-
-
-
-
+adoptThePet = (id) =>{
+  for (let petElement of this.state.pets) {
+    if (petElement.id === id) {
+      petElement.isAdopted = true
+    }
+  }
+}
 
   render() {
     return (
@@ -50,10 +53,10 @@ componentDidMount() {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters  onChangeType={event=> this.updateFilters(event)} onFindPetsClick={event=> this.findPetsClick(event)}     />
+              <Filters  onChangeType={this.updateFilters} onFindPetsClick={this.findPetsClick}     />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={this.adoptThePet} pets={this.state.pets}/>
             </div>
           </div>
         </div>
