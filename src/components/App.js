@@ -16,8 +16,18 @@ class App extends React.Component {
   }
 
  updateFilters = (pet) => {
-   console.log(pet)
+   this.setState({
+     filters: {
+       type: pet
+     }
+   })
  }
+
+
+findPetsClick = (pet) => {
+  console.log("Find Pets Button Clicked")
+}
+
 
   render() {
     return (
@@ -28,7 +38,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters  onChangeType={event=> this.updateFilters(event)} />
+              <Filters  onChangeType={event=> this.updateFilters(event)} onFindPetsClick={event=> this.findPetsClick(event)}     />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
