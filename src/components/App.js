@@ -15,6 +15,10 @@ class App extends React.Component {
     }
   }
 
+ updateFilters = (pet) => {
+   console.log(pet)
+ }
+
   render() {
     return (
       <div className="ui container">
@@ -24,7 +28,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters  onChangeType={event=> this.updateFilters(event)} />
             </div>
             <div className="twelve wide column">
               <PetBrowser />

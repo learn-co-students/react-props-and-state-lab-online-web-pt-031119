@@ -1,6 +1,13 @@
 import React from 'react'
 
+
 class Filters extends React.Component {
+  
+  hardbutton = (event) => {
+    console.log(event)
+  }
+  
+  
   render() {
     return (
       <div className="ui form">
@@ -13,9 +20,9 @@ class Filters extends React.Component {
             <option value="micropig">Micropigs</option>
           </select>
         </div>
-
+        
         <div className="field">
-          <button className="ui secondary button">Find pets</button>
+          <button onClick={this.hardbutton} className="ui secondary button">Find pets</button>
         </div>
       </div>
     )
