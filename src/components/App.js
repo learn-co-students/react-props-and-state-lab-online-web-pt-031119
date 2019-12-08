@@ -9,6 +9,7 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
+      data: null,
       filters: {
         type: 'all'
       }
@@ -21,12 +22,23 @@ class App extends React.Component {
        type: pet
      }
    })
+   console.log(this.state.filters.type)
  }
 
-
 findPetsClick = (pet) => {
-  console.log("Find Pets Button Clicked")
+  fetch(`/api/pets?type=${this.state.filters.type}`)
+  .then(response => response.json())
+  .then(data => this.setState({data}))
 }
+
+componentDidMount() {
+  fetch('/api/pets')
+  .then(response => response.json())
+  .then(data => this.setState({data}))
+} 
+
+
+
 
 
   render() {
