@@ -32,7 +32,6 @@ class App extends React.Component {
       return fetch(url)
           .then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson);
             this.setState({ pets : responseJson })
       }).catch(error => {
         console.log(error)
