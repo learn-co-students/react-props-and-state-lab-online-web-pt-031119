@@ -14,11 +14,11 @@ class PetBrowser extends React.Component {
     // send over to pet.js
     // pet.js will handle individual pet
 
-    return
+    return(
     <div className="ui cards">
       // <Pet onAdoptPet={this.props.onAdoptPet}  />
       {petCards}
-    </div>
+    </div>)
   }
 }
 
