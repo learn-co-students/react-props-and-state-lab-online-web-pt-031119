@@ -32,20 +32,11 @@ class App extends React.Component {
       return fetch(url)
           .then((response) => response.json())
           .then((responseJson) => {
-            this.setState({ data : responseJson })
+            console.log(responseJson);
+            this.setState({ pets : responseJson })
       }).catch(error => {
         console.log(error)
       })
-  }
-
-
-  onChangeType = () => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        type: this.state.type
-      }
-    })
   }
 
   onAdoptPet = (id) => {
@@ -55,10 +46,14 @@ class App extends React.Component {
             isAdopted: true
             }
         } else {
-          pet
+          return pet
         }
       })
     })
+  }
+
+  onChangeType = () => {
+    console.log("On Change Type")
   }
 
 
@@ -71,10 +66,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onFindPetsClick={this.onFindPetsClick} onChange={this.onChangeType} />
+              <Filters onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser onAdoptPet={this.onAdoptPet} />
+              <PetBrowser onAdoptPet={this.onAdoptPet} pets={this.state.pets} />
             </div>
           </div>
         </div>
