@@ -15,6 +15,28 @@ class App extends React.Component {
     }
   }
 
+  // findPets (){
+  //   const url = ""
+  //   if(this.state.filters.type == "all"){
+  //     url = "http://localhost:3000/api/pets"
+  //   } else {
+  //     url = "http://localhost:3000/api/pets" + "?type=" + this.state.filters.type
+      
+  //   }
+
+  //   fetch(url)
+  //   .then(resp => resp.json())
+  // }
+
+  filtering(event){
+    this.setState({
+      filters: {
+        type: event.target.value
+      }
+    })
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +46,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.filtering}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              {/* <PetBrowser /> */}
             </div>
           </div>
         </div>
