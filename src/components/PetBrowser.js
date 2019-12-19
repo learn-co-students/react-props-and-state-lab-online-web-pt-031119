@@ -4,19 +4,17 @@ import Pet from './Pet'
 
 class PetBrowser extends React.Component {
   render() {
-
+    debugger
     const petCards = this.props.pets.map(pet => (
       <Pet key={pet.id} pet={pet} onAdoptPet={this.props.onAdoptPet} />
     )
 
   );
-    // map over pets
-    // send over to pet.js
-    // pet.js will handle individual pet
+
 
     return(
     <div className="ui cards">
-      // <Pet onAdoptPet={this.props.onAdoptPet}  />
+    
       {petCards}
     </div>)
   }
